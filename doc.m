@@ -2,7 +2,7 @@
 %
 % Function to compute the rotation of a vector in 2D and / or 3D spaces.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2017-2020.
+% Author & support : nicolas.douillet (at) free.fr, 2017-2023.
 %
 %% Syntax
 % R = rotate_3D(V, mode, theta);
