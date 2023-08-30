@@ -1,5 +1,5 @@
 function [R, Rm] = rotate_3D(V, mode, theta, u, angle_unit)
-%% rotate_3D : function to compute the rotation of a vector or an array of vectors in 2D or 3D space.
+%% rotate_3D : function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
 %
 % Author && support : nicolas.douillet (at) free.fr, 2017-2023.
 %
@@ -38,7 +38,7 @@ function [R, Rm] = rotate_3D(V, mode, theta, u, angle_unit)
 %
 % - mode : character string in the set {'x', 'X', 'y', 'Y', 'z', 'Z', 'any', 'ANY'}. 
 %
-% - theta : real scalar double, the rotation angle in radian.
+% - theta : real scalar double, the rotation angle in radians or in signed degres.
 %
 %         [ux]
 % - u : = [uy], real column vector double, the rotation axis.
@@ -175,11 +175,11 @@ end
 
 
 %% Body
-
 % Rotation matrix construction and resulting rotated vector computation
 switch Ndim
     
     case 2 % rotate around a point (2D vector) in (xOy) plan -> mandatory rotation axis is 'z' 
+        
         Rm = [cos(theta) -sin(theta);
               sin(theta)  cos(theta)];
         
@@ -210,13 +210,14 @@ switch Ndim
                 Rm = [u(1)^2+cos(theta)*(1-u(1)^2) (1-cos(theta))*u(1)*u(2)-u(3)*sin(theta) (1-cos(theta))*u(1)*u(3)+u(2)*sin(theta);
                       (1-cos(theta))*u(1)*u(2)+u(3)*sin(theta) u(2)^2+cos(theta)*(1-u(2)^2) (1-cos(theta))*u(2)*u(3)-u(1)*sin(theta);
                       (1-cos(theta))*u(1)*u(3)-u(2)*sin(theta) (1-cos(theta))*u(2)*u(3)+u(1)*sin(theta) u(3)^2+cos(theta)*(1-u(3)^2)];
+                  
             otherwise
                 
                 error('Bad mode argument : mode must be a string in the set {''x'',''X'',''y'',''Y'',''z'',''Z'',''any'',''ANY''}.');
                 
         end
         
-        R = Rm * V;       
+        R = Rm * V;   
         
 end
 

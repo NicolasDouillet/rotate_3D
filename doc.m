@@ -1,6 +1,6 @@
 %% rotate_3D
 %
-% Function to compute the rotation of a vector in 2D and / or 3D spaces.
+% Function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2017-2023.
 %
@@ -39,7 +39,7 @@
 %
 % - mode : character string in the set {'x', 'X', 'y', 'Y', 'z', 'Z', 'any', 'ANY'}. 
 %
-% - theta : real scalar double, the rotation angle in radian.
+% - theta : real scalar double, the rotation angle in radians or in signed degres.
 %
 %          [ux]
 % - u : = [uy], real column vector double, the rotation axis.
@@ -79,6 +79,27 @@ V = eye(3);
 u = ones(3,1);
 mode = 'any';
 R = rotate_3D(V, mode, theta, u)
+%
+%% 3D Example #4
+%
+% Shifted rotation axis
+% Regular hexagon in 3D space
+V1 = [-sqrt(2)/3 sqrt(6)/3 -1/3]';
+V3 = [-sqrt(2)/3 -sqrt(6)/3 -1/3]';
+V5 = [0 0 1]';
+V2 = (2/3)*(V1+V3) - (1/3)*V5;
+V4 = (2/3)*(V3+V5) - (1/3)*V1;
+V6 = (2/3)*(V1+V5) - (1/3)*V3;
+P = cat(2,V1,V2,V3,V4,V5,V6); % green hexagon
+n = cross(V1-V5,V2-V5);
+% 2*pi/3 rotation around line defined by the vector normal to P plane and going through V2
+R = V2 + rotate_3D(P-V2, 'any', 2*pi/3, n); % red hexagon
+figure;
+line([P(1,:) P(1,1)],[P(2,:) P(2,1)],[P(3,:) P(3,1)],'Color',[0 1 0],'Linewidth',2), hold on;
+line([R(1,:) R(1,1)],[R(2,:) R(2,1)],[R(3,:) R(3,1)],'Color',[1 0 0],'Linewidth',2), hold on;
+line([V2(1) V2(1)+n(1)],[V2(2) V2(2)+n(2)],[V2(3) V2(3)+n(3)],'Color',[0 0 1],'Linewidth',2), hold on;
+view(-45,27);
+axis equal, axis tight;
 %
 %% 2D Example #1
 %
