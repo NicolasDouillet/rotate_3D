@@ -1,7 +1,7 @@
 function [R, Rm] = rotate_3D(V, mode, theta, u, angle_unit)
 %% rotate_3D : function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
 %
-% Author && support : nicolas.douillet (at) free.fr, 2017-2023.
+% Author && support : nicolas.douillet (at) free.fr, 2017-2024.
 %
 %
 % Syntax
@@ -36,7 +36,7 @@ function [R, Rm] = rotate_3D(V, mode, theta, u, angle_unit)
 % - V = [ -Vy- ], real (array of) vector(s) double, the vector(s) to rotate. Size(V) = [3,vector_nb]. 
 %       [ -Vz- ]
 %
-% - mode : character string in the set {'x', 'X', 'y', 'Y', 'z', 'Z', 'any', 'ANY'}. 
+% - mode : character string in the set {'x', 'X', 'y', 'Y', 'z', 'Z', 'i', 'I', 'j', 'J', 'k', 'K', 'any', 'ANY'}. 
 %
 % - theta : real scalar double, the rotation angle in radians or in signed degres.
 %
@@ -118,7 +118,8 @@ Ndim = size(V,1);
 assert(nargin > 2, 'Not enough input arguments.');
 assert(nargin < 6, 'Too many input arguments.');
 assert(Ndim > 1 && Ndim < 4, 'Input argument V must have between one and three rows : 1 < size(V,1) <= 3.');
-assert(strcmpi(mode,'x') || strcmpi(mode,'y') || strcmpi(mode,'z') || strcmpi(mode,'any'),...
+assert(strcmpi(mode,'x') || strcmpi(mode,'y') || strcmpi(mode,'z') || ...
+       strcmpi(mode,'i') || strcmpi(mode,'j') || strcmpi(mode,'k') || strcmpi(mode,'any'),...
        'Bad mode argument : mode must be a string in the set {''x'',''X'',''y'',''Y'',''z'',''Z'',''any'',''ANY''}.');
 
 if nargin < 5
@@ -135,15 +136,15 @@ if nargin < 5
             
             switch mode
                 
-                case {'x', 'X'}
+                case {'x', 'X', 'i', 'I'}
                     
                     u = [1 0 0]';
                     
-                case {'y', 'Y'}
+                case {'y', 'Y', 'j', 'J'}
                     
                     u = [0 1 0]';
                     
-                case {'z', 'Z'}
+                case {'z', 'Z', 'k', 'K'}
                     
                     u = [0 0 1]';
                     
@@ -191,15 +192,15 @@ switch Ndim
         
         switch mode
             
-            case {'x', 'X'} % X axis rotation matrix ; u = i = [1 0 0]'
+            case {'x', 'X', 'i', 'I'} % X axis rotation matrix ; u = i = [1 0 0]'
                 Rm = [1          0           0;
                       0 cos(theta) -sin(theta);
                       0 sin(theta)  cos(theta)];
-            case {'y', 'Y'} % Y axis rotation matrix ; u = j = [0 1 0]'
+            case {'y', 'Y', 'j', 'J'} % Y axis rotation matrix ; u = j = [0 1 0]'
                 Rm = [cos(theta)   0  -sin(theta);
                       0            1           0;
                       sin(theta)  0  cos(theta)];
-            case {'z', 'Z'} % Z axis rotation matrix ; u = k = [0 0 1]'
+            case {'z', 'Z', 'k', 'K'} % Z axis rotation matrix ; u = k = [0 0 1]'
                 Rm = [cos(theta) -sin(theta) 0;
                       sin(theta)  cos(theta) 0;
                       0           0          1];

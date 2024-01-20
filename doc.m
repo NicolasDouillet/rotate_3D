@@ -2,7 +2,7 @@
 %
 % Function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2017-2023.
+% Author & support : nicolas.douillet (at) free.fr, 2017-2024.
 %
 %% Syntax
 % R = rotate_3D(V, mode, theta);
@@ -16,7 +16,7 @@
 %% Description
 % R = rotate_3D(V, mode, theta) computes the vector R, which results
 % from the rotation of V vector around one of the the basis vectors, which
-% is choosen in the mode : 'x', 'y', or 'z'.
+% is choosen in the mode : 'x', 'y', 'z', 'i', 'j', 'k', or 'any'.
 %
 % R = rotate_3D(V, mode, theta, u) computes the vector R, which results
 % from the rotation of V vector around u vector and of theta angle in radian.
@@ -27,7 +27,7 @@
 % [R,Rm] = rotate_3D(V, mode, theta, u, angle_unit) also returns the
 % rotation matrix.
 %
-% Important NB : in 2D -(xOy) plan- mandatory rotation axis is 'z'. It will
+% Important NB : in 2D -(xOy) plan- mandatory rotation axis is 'z' 'k'. It will
 % be set as so by default if input is different. Also in 2D, in case u is missing it
 % is automatically set to the origin [0,0]' by default.
 %
@@ -37,7 +37,7 @@
 % - V = [ -Vy- ], real (array of) vector(s) double, the vector(s) to rotate. Size(V) = [3,vector_nb]. 
 %        [ -Vz- ]
 %
-% - mode : character string in the set {'x', 'X', 'y', 'Y', 'z', 'Z', 'any', 'ANY'}. 
+% - mode : character string in the set {'x', 'X', 'y', 'Y', 'z', 'Z', 'i', 'I', 'j', 'J', 'k', 'K', 'any', 'ANY'}. 
 %
 % - theta : real scalar double, the rotation angle in radians or in signed degres.
 %
