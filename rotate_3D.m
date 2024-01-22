@@ -1,5 +1,5 @@
 function [R, Rm] = rotate_3D(V, mode, theta, u, angle_unit)
-%% rotate_3D : function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
+% rotate_3D : function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
 %
 % Author && support : nicolas.douillet (at) free.fr, 2017-2024.
 %
@@ -112,7 +112,7 @@ function [R, Rm] = rotate_3D(V, mode, theta, u, angle_unit)
 % R = rotate_3D(V, mode, theta, u, 'degree')
 
 
-%% Input parsing
+% Input parsing
 Ndim = size(V,1);
 
 assert(nargin > 2, 'Not enough input arguments.');
@@ -175,7 +175,7 @@ end
 % assert(imag(theta) == 0, 'Rotation angle theta must be real number in radian unit.');
 
 
-%% Body
+% Body
 % Rotation matrix construction and resulting rotated vector computation
 switch Ndim
     
