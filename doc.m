@@ -2,7 +2,7 @@
 %
 % Function to perform rotation of a given vector or array of vectors around any given axis, in 2D or 3D spaces.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2017-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2017-2024.
 %
 %% Syntax
 % R = rotate_3D(V, mode, theta);

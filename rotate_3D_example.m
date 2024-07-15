@@ -1,3 +1,8 @@
+% rotate_3D_example
+%
+% Author : nicolas.douillet9 (at) gmail.com, 2017-2024.
+
+
 step = pi/36;
 theta = (pi/2)*ones(181,1); % (pi/2)*ones(181,1); % (0:step:pi)';
 phi = 0:step:2*pi;
